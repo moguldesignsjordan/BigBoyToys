@@ -62,13 +62,30 @@ const LandingPage = () => {
         </div>
       </nav>
 
+      {/* --- Mobile Menu --- */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8 md:hidden">
+            {t.nav.map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsMenuOpen(false)} className="text-2xl font-black italic uppercase tracking-tighter">
+                {item}
+              </a>
+            ))}
+            <button 
+              onClick={() => {setLanguage(language === 'en' ? 'es' : 'en'); setIsMenuOpen(false);}}
+              className="mt-4 flex items-center gap-2 bg-red-600 px-6 py-2 rounded-full font-bold"
+            >
+              <Globe size={18} /> {language.toUpperCase()}
+            </button>
+        </div>
+      )}
+
       {/* --- Hero Section --- */}
       <section id="home" className="relative h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
         <img 
           src="/image1.png" 
           alt="Hero Bike" 
-          className="absolute inset-0 w-full h-full object-cover opacity-80 zoom-animation"
+          className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
         
         <div className="relative z-20 text-center px-4">
@@ -84,7 +101,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* --- Fleet / Rentals Section --- */}
+      {/* --- Fleet Section --- */}
       <section id="rentals" className="py-24 bg-zinc-950 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-16">
@@ -93,7 +110,6 @@ const LandingPage = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
-            {/* Bike Card */}
             <div className="group overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-red-600 transition-colors">
               <div className="aspect-video overflow-hidden">
                 <img src="/image1.png" alt="Dirt Bikes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -104,7 +120,6 @@ const LandingPage = () => {
               </div>
             </div>
 
-            {/* ATV Card */}
             <div className="group overflow-hidden bg-zinc-900 border border-zinc-800 hover:border-red-600 transition-colors">
               <div className="aspect-video overflow-hidden">
                 <img src="/image2.png" alt="ATVs" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -134,7 +149,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* --- Contact & WhatsApp --- */}
+      {/* --- Footer & WhatsApp --- */}
       <footer id="contact" className="bg-zinc-950 py-20 px-6 border-t border-red-600/30">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
           <div className="max-w-md">
@@ -167,9 +182,19 @@ const LandingPage = () => {
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-zinc-900 flex justify-between items-center text-zinc-600 text-[10px] uppercase tracking-widest font-bold">
+        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-zinc-600 text-[10px] uppercase tracking-widest font-bold gap-4">
           <span>© 2026 BIG BOY TOYS SOSÚA</span>
-          <span>Powered by Mogul Design Agency</span>
+          <span>
+            Powered by{' '}
+            <a 
+              href="https://moguldesignagency.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-red-600 hover:text-white transition-colors duration-300 underline underline-offset-4"
+            >
+              Mogul Design Agency
+            </a>
+          </span>
         </div>
       </footer>
     </div>
